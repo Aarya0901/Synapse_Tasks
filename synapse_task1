@@ -1,0 +1,41 @@
+# Our given Pokedex
+pokedex = {
+    "Pikachu": ("Electric",),
+    "Charizard": ("Fire", "Flying"),
+    "Lapras": ("Water", "Ice"),
+    "Machamp": ("Fighting",),
+    "Mewtwo": ("Psychic", "Fighting"),
+    "Hoopa": ("Psychic", "Ghost", "Dark"),
+    "Lugia": ("Psychic", "Flying", "Water"),
+    "Squirtle": ("Water",),
+    "Gengar": ("Ghost", "Poison"),
+    "Onix": ("Rock", "Ground")
+}
+
+k = 3  
+
+pokemon_list = list(pokedex.keys())
+
+best_team = None
+best_types = set()
+
+for i in range(len(pokemon_list)):
+    for j in range(i+1, len(pokemon_list)):
+        for l in range(j+1, len(pokemon_list)):  
+           
+            squad = [pokemon_list[i], pokemon_list[j], pokemon_list[l]]
+
+          
+            combined_types = set()
+            for pokemon in squad:
+                combined_types.update(pokedex[pokemon])
+
+           
+            if len(combined_types) > len(best_types):
+                best_types = combined_types
+                best_team = squad
+
+
+print("Strongest Team:", best_team)
+print("Unique Types Covered:", best_types)
+print("Number of Types:", len(best_types))
